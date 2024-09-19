@@ -33,8 +33,7 @@ struct Home: View {
                 }
                 .overlay(alignment: .trailing) {
                     Button {
-//                        habitModel.addNewHabit.toggle()
-                        showAddNewHabitView = true
+                        addNewHabit()
                     } label: {
                         Image(systemName: "plus.circle")
                             .font(.title2)
@@ -64,9 +63,7 @@ struct Home: View {
                     
                     if habits.isEmpty {
                         Button {
-//                            habitModel.addNewHabit.toggle()
-                            showAddNewHabitView = true
-//                            addSample()
+                            addNewHabit()
                         } label: {
                             Label (
                                 title: { Text("New habit") },
@@ -93,6 +90,10 @@ struct Home: View {
                 .environmentObject(habitModel)
                 .interactiveDismissDisabled(true)
         }
+    }
+    
+    func addNewHabit() {
+        showAddNewHabitView = true
     }
     
     func addSample() {
