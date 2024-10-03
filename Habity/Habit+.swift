@@ -12,15 +12,18 @@ import SwiftData
 //class habit2ModelView {
     @Model
     class Habit2 {
+//        var id: String
         var title: String
-        var color: String?
-        var weekDays: [String]?
-        var isReminderOn: Bool
-        var reminderText: String?
-        var notificationDate: Date?
+        var color: String = "Card-1"
+        var weekDays: [String] = []
+        var isReminderOn: Bool = false
+        var reminderText: String? = ""
+        var notificationDate: Date? = Date()
         var notificationIDs: [String]?
+        var createdAt: Date? = Date()
         
-        init(title: String, color: String? = nil, weekDays: [String]? = nil, isReminderOn: Bool, reminderText: String? = nil, notificationDate: Date? = nil, notificationIDs: [String]? = nil) {
+        init(title: String, color: String = "Card-1", weekDays: [String] = [], isReminderOn: Bool, reminderText: String? = nil, notificationDate: Date? = nil, notificationIDs: [String]? = nil, createdAt: Date? = Date()) {
+//            self.id = UUID().uuidString
             self.title = title
             self.color = color
             self.weekDays = weekDays
@@ -28,6 +31,7 @@ import SwiftData
             self.reminderText = reminderText
             self.notificationDate = notificationDate
             self.notificationIDs = notificationIDs
+            self.createdAt = createdAt
         }
     }
     

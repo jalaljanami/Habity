@@ -10,9 +10,9 @@ import SwiftData
 
 struct Home: View {
     @Environment(\.modelContext) var modelContex
-//    @FetchRequest(entity: HabitTracker.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \HabitTracker.dateAdded, ascending: false )], animation: .easeInOut)
-    @Query var habits: [Habit2]
-//    var habits: FetchedResults<HabitTracker>
+
+    @Query(sort: \Habit2.createdAt, order: .reverse) var habits: [Habit2]
+    @State var selectedHabit: Habit2?
     
     @StateObject var habitModel: HabitViewModel = HabitViewModel()
     @State var showAddNewHabitView = false
@@ -33,7 +33,7 @@ struct Home: View {
                 }
                 .overlay(alignment: .trailing) {
                     Button {
-                        addNewHabit()
+                        addNewHabitAction()
                     } label: {
                         Image(systemName: "plus.circle")
                             .font(.title2)
@@ -48,36 +48,70 @@ struct Home: View {
 //            Button("AddSample", action: addSample)
 //            
             if !habits.isEmpty {
-                List {
+                ScrollView {
 //                    Text("hi")
-                    ForEach(habits.reversed()) { habit in
-                        VStack(alignment: .leading) {
-                            Text(habit.title)
-                        }
+                    ForEach(habits, id: \.self) { habit in
+//                        NavigationLink(value: habit) {
+//                            VStack(alignment: .leading) {
+//                                
+//                                HStack {
+//                                    Circle()
+//                                        .fill(Color(habit.color))
+//                                        .frame(maxWidth: 16)
+//                                    Text(habit.title)
+//                                }
+//                            }
+                        HabitListItem(habit: habit)
+                            .onTapGesture {
+                                showAddNewHabitView = true
+                                selectedHabit = habit
+                            }
+//                        }
                     }
-                }
-                .frame(maxWidth: .infinity)
-            }
-            ScrollView(habits.isEmpty ? .init() : .vertical, showsIndicators: false) {
-                VStack(spacing: 15) {
+                    .onDelete(perform: RemoveHabit)
+//                    .onAppear {
+//                        reversedItems = habits.reversed()
+//                    }
+//                    .onChange(of: habits) { newReversedItems in
+//                        reversedItems = newReversedItems.reversed()
+//                    }
+                   
                     
-                    if habits.isEmpty {
-                        Button {
-                            addNewHabit()
-                        } label: {
-                            Label (
-                                title: { Text("New habit") },
-                                icon: { Image(systemName: "plus.circle") }
-                            )
-                            .font(.callout.bold())
-                            .tint(.white)
-                        }
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                    } else {
-                        
-                    }
+                    
                 }
-                .padding(.vertical)
+                .onTapGesture { IndexPath in
+                    
+                    
+                }
+//                .background {
+//                    Color.red
+//                }
+//                NavigationLink(destination: AddNewHabit(habit: habits[0]), label: {
+//                    
+//                })
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else {
+                ScrollView(habits.isEmpty ? .init() : .vertical, showsIndicators: false) {
+                    VStack(spacing: 15) {
+                        
+                        if habits.isEmpty {
+                            Button {
+                                addNewHabitAction()
+                            } label: {
+                                Label (
+                                    title: { Text("New habit") },
+                                    icon: { Image(systemName: "plus.circle") }
+                                )
+                                .font(.callout.bold())
+                                .tint(.white)
+                            }
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            //                    } else {
+                            
+                        }
+                    }
+                    .padding(.vertical)
+                }
             }
         }
         .frame(maxHeight: .infinity, alignment: .top)
@@ -86,24 +120,37 @@ struct Home: View {
             // MARK: Erasing all existing content
             habitModel.resetData()
         } content: {
-            AddNewHabit()
-                .environmentObject(habitModel)
-                .interactiveDismissDisabled(true)
+            if (selectedHabit != nil) {
+                AddNewHabit(habit: selectedHabit!)
+                    .interactiveDismissDisabled(true)
+            } else {
+                AddNewHabit(habit: Habit2(title: "New Habite Title", weekDays: [], isReminderOn: false))
+//                .environmentObject(habitModel)
+                    .interactiveDismissDisabled(true)
+            }
         }
+        
     }
     
-    func addNewHabit() {
+    func addNewHabitAction() {
         showAddNewHabitView = true
     }
     
-    func addSample() {
-        
-        DispatchQueue.main.async {
-            let firstHabit = Habit2(title: "Test01" ,isReminderOn: false)
-            modelContex.insert(firstHabit)
+    func RemoveHabit(_ indexSet: IndexSet) {
+        for index in indexSet {
+            let habit = habits[index]
+            modelContex.delete(habit)
         }
-        
     }
+    
+//    func addSample() {
+//        
+//        DispatchQueue.main.async {
+//            let firstHabit = Habit2(id: <#String#>, title: "Test01" ,isReminderOn: false)
+//            modelContex.insert(firstHabit)
+//        }
+//        
+//    }
 }
 
 #Preview {

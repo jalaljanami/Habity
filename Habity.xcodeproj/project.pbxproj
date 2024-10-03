@@ -12,6 +12,8 @@
 		4E0289542C2C563800890652 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E0289532C2C563800890652 /* Assets.xcassets */; };
 		4E0289572C2C563800890652 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E0289562C2C563800890652 /* Preview Assets.xcassets */; };
 		4E02895E2C2C579000890652 /* item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E02895D2C2C579000890652 /* item.swift */; };
+		4E4A17032CADCFDD00A04E64 /* HabitListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4A17022CADCFDD00A04E64 /* HabitListItem.swift */; };
+		4E4A17072CADCFEE00A04E64 /* InnerBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4A17042CADCFEE00A04E64 /* InnerBorder.swift */; };
 		4EC045BE2C567170007860BA /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC045BD2C567170007860BA /* Home.swift */; };
 		4EC045C02C568C6A007860BA /* HabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC045BF2C568C6A007860BA /* HabitViewModel.swift */; };
 		4EC045C22C568E81007860BA /* AddNewHabit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC045C12C568E81007860BA /* AddNewHabit.swift */; };
@@ -25,6 +27,8 @@
 		4E0289532C2C563800890652 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E0289562C2C563800890652 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4E02895D2C2C579000890652 /* item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = item.swift; sourceTree = "<group>"; };
+		4E4A17022CADCFDD00A04E64 /* HabitListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitListItem.swift; sourceTree = "<group>"; };
+		4E4A17042CADCFEE00A04E64 /* InnerBorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InnerBorder.swift; sourceTree = "<group>"; };
 		4EC045BD2C567170007860BA /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		4EC045BF2C568C6A007860BA /* HabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewModel.swift; sourceTree = "<group>"; };
 		4EC045C12C568E81007860BA /* AddNewHabit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewHabit.swift; sourceTree = "<group>"; };
@@ -63,6 +67,7 @@
 			children = (
 				4E02894F2C2C563700890652 /* HabityApp.swift */,
 				4E9E39E82C64F79E00799332 /* Old */,
+				4E4A17062CADCFEE00A04E64 /* Utilities */,
 				4EC045B92C5670D9007860BA /* ViewModel */,
 				4EC045B82C5670D2007860BA /* View */,
 				4EDFF4222C62C4B9005D94F1 /* Habit+.swift */,
@@ -80,6 +85,22 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		4E4A17052CADCFEE00A04E64 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				4E4A17042CADCFEE00A04E64 /* InnerBorder.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		4E4A17062CADCFEE00A04E64 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4E4A17052CADCFEE00A04E64 /* Modifiers */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		4E9E39E82C64F79E00799332 /* Old */ = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				4EC045BD2C567170007860BA /* Home.swift */,
+				4E4A17022CADCFDD00A04E64 /* HabitListItem.swift */,
 				4EC045C12C568E81007860BA /* AddNewHabit.swift */,
 			);
 			path = View;
@@ -177,7 +199,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E0289522C2C563700890652 /* ContentView.swift in Sources */,
+				4E4A17032CADCFDD00A04E64 /* HabitListItem.swift in Sources */,
 				4E02895E2C2C579000890652 /* item.swift in Sources */,
+				4E4A17072CADCFEE00A04E64 /* InnerBorder.swift in Sources */,
 				4EDFF4232C62C4B9005D94F1 /* Habit+.swift in Sources */,
 				4EC045BE2C567170007860BA /* Home.swift in Sources */,
 				4EC045C22C568E81007860BA /* AddNewHabit.swift in Sources */,
